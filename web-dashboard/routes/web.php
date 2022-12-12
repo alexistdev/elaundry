@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\{DashboardController as AdmDash};
+use App\Http\Controllers\Admin\{DashboardController as AdmDash,
+    CustomerController as AdmCust,
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +31,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::group(['roles' => 'admin'], function () {
         Route::get('/admin/dashboard', [AdmDash::class, 'index'])->name('adm.dashboard');
+        Route::get('/admin/customer', [AdmCust::class, 'index'])->name('adm.customer');
     });
 });
 

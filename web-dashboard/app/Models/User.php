@@ -58,4 +58,14 @@ class User extends Authenticatable
     {
         return (strtolower($role)==strtolower($this->have_role->name)) ? true : false;
     }
+
+    public function scopeCustomer($query)
+    {
+        return $query->where('role_id',3);
+    }
+
+    public function pelanggan()
+    {
+        return $this->hasOne(Customer::class);
+    }
 }
