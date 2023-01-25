@@ -36,7 +36,7 @@
                     <li class="menu-title">Master Data</li>
 
                     <li>
-                        <a href="{{route('adm.dashboard')}}" class="waves-effect">
+                        <a href="{{route('adm.laundry')}}" class="waves-effect">
                             <i class="ri-store-line"></i>
                             <span>Laundry</span>
                         </a>

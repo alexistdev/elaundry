@@ -3,7 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\{DashboardController as AdmDash,
-    CustomerController as AdmCust,
+    CustomerController as AdmCust,LaundryController as AdmLaundry,
 };
 
 /*
@@ -32,6 +32,7 @@ Route::middleware('auth')->group(function () {
     Route::group(['roles' => 'admin'], function () {
         Route::get('/admin/dashboard', [AdmDash::class, 'index'])->name('adm.dashboard');
         Route::get('/admin/customer', [AdmCust::class, 'index'])->name('adm.customer');
+        Route::get('/admin/laundry', [AdmLaundry::class, 'index'])->name('adm.laundry');
     });
 });
 

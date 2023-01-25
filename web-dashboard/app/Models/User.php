@@ -64,6 +64,11 @@ class User extends Authenticatable
         return $query->where('role_id',3);
     }
 
+    public function scopeStore($query)
+    {
+        return $query->where('role_id',2);
+    }
+
     public function pelanggan()
     {
         return $this->hasOne(Customer::class);
