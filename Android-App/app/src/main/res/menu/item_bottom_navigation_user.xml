@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="@string/menuUser1"
+        android:id="@+id/home_menu"
+        android:icon="@drawable/ic_home"/>
+    <item android:title="@string/menuUser2"
+        android:id="@+id/laundry_menu"
+        android:icon="@drawable/ic_baseline_local_laundry_service_24"/>
+    <item android:title="@string/menuUser3"
+        android:id="@+id/inbox_menu"
+        android:icon="@drawable/ic_baseline_message_24"/>
+</menu>
