@@ -5,7 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_login"
-    tools:context=".ui.Login">
+    tools:context=".ui.Login"
+    android:id="@+id/layoutRoot">
+
+
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -18,7 +21,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center_horizontal"
+             />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -34,7 +42,9 @@
                 android:autofillHints="emailAddress"
                 android:hint="@string/login1"
                 android:inputType="textEmailAddress"
-                android:minHeight="48dp" />
+                android:minHeight="48dp"
+                android:textColorHint="#00838F"
+                tools:ignore="TextContrastCheck" />
 
             <EditText
                 android:id="@+id/txt_password"
@@ -47,7 +57,9 @@
                 android:autofillHints="emailAddress"
                 android:hint="@string/login2"
                 android:inputType="textPassword"
-                android:minHeight="48dp" />
+                android:minHeight="48dp"
+                android:textColorHint="#00838F"
+                tools:ignore="TextContrastCheck" />
 
         </LinearLayout>
 

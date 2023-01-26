@@ -26,7 +26,7 @@ public class Welcome extends AppCompatActivity {
             @Override
             public void run() {
                 finish();
-                Intent homepage = new Intent(Welcome.this, DashboardUser.class);
+                Intent homepage = new Intent(Welcome.this, Login.class);
                 startActivity(homepage);
             }
         }, timeout);
