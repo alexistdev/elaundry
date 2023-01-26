@@ -1,8 +1,14 @@
 <resources>
     <string name="app_name">elaundry-apps</string>
+    <string name="imageContent">ElaundryApps</string>
     <!-- SplashScreen -->
     <string name="splash1">ElaundryApps</string>
     <string name="splash2">Elaundry v.1.0</string>
     <string name="splash3">Kami jemput dan Antarkan</string>
     <string name="splash4">Cucian Anda</string>
+    <!-- Login -->
+    <string name="login1">Email</string>
+    <string name="login2">Password</string>
+    <string name="login3">LOGIN</string>
+    <string name="login4">Create Account</string>
 </resources>
