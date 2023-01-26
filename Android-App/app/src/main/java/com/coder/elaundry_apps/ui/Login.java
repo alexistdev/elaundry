@@ -12,6 +12,7 @@ import com.coder.elaundry_apps.api.APIService;
 import com.coder.elaundry_apps.api.NoConnectivityException;
 import com.coder.elaundry_apps.model.APIError;
 import com.coder.elaundry_apps.model.LoginModel;
+import com.coder.elaundry_apps.store.DashboardStore;
 import com.coder.elaundry_apps.user.DashboardUser;
 import com.coder.elaundry_apps.utils.ErrorUtils;
 import com.coder.elaundry_apps.utils.HelperUtils;
@@ -70,17 +71,17 @@ public class Login extends AppCompatActivity {
                         if(response.body() != null){
                             SessionUtils.login(getApplicationContext(),response.body().getIdUser(),response.body().getRole());
                             if(response.body().getRole().equals("3")){
-                                Intent intent = new Intent(Login.this, DashboardUser.class);
-                                startActivity(intent);
-                                finish();
+                                redirecTo(DashboardUser.class);
                             }
-                            Intent intent = new Intent(Login.this, DashboardUser.class);
-                            startActivity(intent);
-                            finish();
+                            redirecTo(DashboardStore.class);
+                        }
+                    } else {
+                        APIError error = ErrorUtils.parseError(response);
+                        if(error != null){
+                            HelperUtils.pesan(getApplicationContext(),error.message());
                         }
                     }
-                    APIError error = ErrorUtils.parseError(response);
-                    HelperUtils.pesan(getApplicationContext(),error.message());
+
                 }
                 @EverythingIsNonNull
                 @Override
@@ -96,6 +97,12 @@ public class Login extends AppCompatActivity {
             e.printStackTrace();
             HelperUtils.pesan(getApplicationContext(),e.getMessage());
         }
+    }
+
+    private void redirecTo(Class<?> className){
+        Intent intent = new Intent(getApplicationContext(), className);
+        startActivity(intent);
+        finish();
     }
 
     private void showDialog(){
