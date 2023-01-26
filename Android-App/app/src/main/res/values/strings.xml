@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">elaundry-apps</string>
+    <!-- SplashScreen -->
+    <string name="splash1">ElaundryApps</string>
+    <string name="splash2">Elaundry v.1.0</string>
+    <string name="splash3">Kami jemput dan Antarkan</string>
+    <string name="splash4">Cucian Anda</string>
 </resources>
