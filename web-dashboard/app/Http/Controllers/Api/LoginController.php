@@ -95,4 +95,37 @@ class LoginController extends Controller
             }
         }
     }
+
+    public function password_recovery(Request $request)
+    {
+        $rules = [
+            'email' => 'required|email',
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'message' => $validator->messages()->first(),
+            ], 404);
+        } else {
+            $cekIfExists = User::where('email',$request->email)->first();
+
+            if($cekIfExists != null){
+                $password = rand(10000,1000000);
+                $cekIfExists->update([
+                   'password' =>  Hash::make($password),
+                ]);
+                //todo sent email
+                return response()->json([
+                    'status' => true,
+                    'message' => "Success",
+                    'data' => $password
+                ], 200);
+            }
+            return response()->json([
+                'status' => false,
+                'message' => "Email Not Found",
+            ], 401);
+        }
+    }
 }
