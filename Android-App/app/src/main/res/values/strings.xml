@@ -8,7 +8,15 @@
     <string name="splash4">Cucian Anda</string>
     <!-- Login -->
     <string name="login1">Email</string>
-    <string name="login2">Password</string>
+    <string name="login2">******</string>
     <string name="login3">LOGIN</string>
     <string name="login4">Create Account</string>
+
+    <!-- Register -->
+    <string name="daftar1">Nama Lengkap</string>
+    <string name="daftar2">Nomor Telepon</string>
+    <string name="daftar3">Email</string>
+    <string name="daftar4">Password</string>
+    <string name="daftar5">DAFTAR</string>
+    <string name="daftar6">Login ?</string>
 </resources>
