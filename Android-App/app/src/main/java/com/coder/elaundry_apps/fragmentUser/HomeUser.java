@@ -1,66 +1,118 @@
 package com.coder.elaundry_apps.fragmentUser;
 
+import android.content.Context;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import android.widget.ProgressBar;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import com.coder.elaundry_apps.R;
+import com.coder.elaundry_apps.adapter.LaundryAdapter;
+import com.coder.elaundry_apps.api.APIService;
+import com.coder.elaundry_apps.api.NoConnectivityException;
+import com.coder.elaundry_apps.model.APIError;
+import com.coder.elaundry_apps.model.LaundryModel;
+import com.coder.elaundry_apps.response.GetLaundry;
+import com.coder.elaundry_apps.utils.ErrorUtils;
+import com.coder.elaundry_apps.utils.HelperUtils;
+import java.util.ArrayList;
+import java.util.List;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.internal.EverythingIsNonNull;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link HomeUser#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class HomeUser extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private RecyclerView gridLaundry;
+    private LaundryAdapter laundryAdapter;
+    private List<LaundryModel> daftarLaundry;
+    private ProgressBar progressBar;
 
     public HomeUser() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HomeUser.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static HomeUser newInstance(String param1, String param2) {
-        HomeUser fragment = new HomeUser();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home_user, container, false);
+        View mview = inflater.inflate(R.layout.fragment_home_user, container, false);
+        dataInit(mview);
+        setupRecyclerView();
+        setData(getContext());
+        return mview;
+    }
+
+    private void dataInit(View mview) {
+        gridLaundry = mview.findViewById(R.id.rcLaundry);
+        progressBar = mview.findViewById(R.id.progressBar);
+    }
+
+    private void setupRecyclerView() {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        laundryAdapter = new LaundryAdapter(new ArrayList<>());
+        gridLaundry.setLayoutManager(linearLayoutManager);
+        gridLaundry.setAdapter(laundryAdapter);
+    }
+
+    private void showDialog() {
+        if (progressBar.getVisibility() == View.INVISIBLE) {
+            progressBar.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void hideDialog() {
+        if (progressBar.getVisibility() == View.VISIBLE) {
+            progressBar.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    public void setData(Context mContext) {
+        this.showDialog();
+        try {
+            Call<GetLaundry> call = APIService.Factory.create(mContext).getLaundry();
+            call.enqueue(new Callback<GetLaundry>() {
+                @EverythingIsNonNull
+                @Override
+                public void onResponse(Call<GetLaundry> call, Response<GetLaundry> response) {
+                    hideDialog();
+                    if (response.isSuccessful()) {
+                        if (response.body() != null) {
+                            daftarLaundry =response.body().getDaftarLaundry();
+                            laundryAdapter.replaceData(daftarLaundry);
+                        }
+                    } else {
+                        APIError error = ErrorUtils.parseError(response);
+                        if (error != null) {
+                            HelperUtils.pesan(mContext, error.message());
+                        }
+                    }
+                }
+
+                @EverythingIsNonNull
+                @Override
+                public void onFailure(Call<GetLaundry> call, Throwable t) {
+                    hideDialog();
+                    if (t instanceof NoConnectivityException) {
+                        HelperUtils.pesan(mContext, t.getMessage());
+                    }
+                }
+            });
+        } catch (Exception e) {
+            this.hideDialog();
+            e.printStackTrace();
+            HelperUtils.pesan(getContext(), e.getMessage());
+        }
     }
 }

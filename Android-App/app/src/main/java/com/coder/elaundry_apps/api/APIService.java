@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.coder.elaundry_apps.BuildConfig;
 import com.coder.elaundry_apps.model.LoginModel;
+import com.coder.elaundry_apps.response.GetLaundry;
 
 import java.util.concurrent.TimeUnit;
 
@@ -21,8 +22,7 @@ public interface APIService {
 
 
     @GET("api/v1/list_laundry")
-    Call<LoginModel> getLaundry(@Field("email") String email,
-                               @Field("password") String password);
+    Call<GetLaundry> getLaundry();
 
     @FormUrlEncoded
     @POST("api/v1/auth")
