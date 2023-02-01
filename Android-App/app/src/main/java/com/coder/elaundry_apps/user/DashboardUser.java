@@ -18,6 +18,7 @@ public class DashboardUser extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_user);
         this.dataInit();
+        loadFragment(new HomeUser());
         bottomNavigationView.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
             Fragment fragment;

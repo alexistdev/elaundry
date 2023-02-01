@@ -72,8 +72,9 @@ public class Login extends AppCompatActivity {
                             SessionUtils.login(getApplicationContext(),response.body().getIdUser(),response.body().getRole());
                             if(response.body().getRole().equals("3")){
                                 redirecTo(DashboardUser.class);
+                            }else{
+                                redirecTo(DashboardStore.class);
                             }
-                            redirecTo(DashboardStore.class);
                         }
                     } else {
                         APIError error = ErrorUtils.parseError(response);
@@ -81,7 +82,6 @@ public class Login extends AppCompatActivity {
                             HelperUtils.pesan(getApplicationContext(),error.message());
                         }
                     }
-
                 }
                 @EverythingIsNonNull
                 @Override
@@ -100,7 +100,7 @@ public class Login extends AppCompatActivity {
     }
 
     private void redirecTo(Class<?> className){
-        Intent intent = new Intent(getApplicationContext(), className);
+        Intent intent = new Intent(Login.this, className);
         startActivity(intent);
         finish();
     }
