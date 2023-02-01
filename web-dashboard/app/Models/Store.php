@@ -17,4 +17,11 @@ class Store extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+//    public function scopeActive()
+//    {
+//        return $this->$query = function($query){
+//            $query->where('status',1);
+//        };
+//    }
 }
