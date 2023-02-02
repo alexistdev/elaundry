@@ -24,4 +24,8 @@ Route::post('/v1/auth', [Auth::class, 'Auth_login'])->name('api.login');
 Route::post('/v1/register', [Auth::class, 'register'])->name('api.register');
 Route::post('/v1/recovery_password', [Auth::class, 'password_recovery'])->name('api.recovery');
 
+/**
+ * User API
+ */
 Route::get('/v1/list_laundry', [UserLaundry::class, 'list_laundry'])->name('api.laundry.list');
+Route::post('/v1/order', [UserLaundry::class, 'order'])->name('api.laundry.order');

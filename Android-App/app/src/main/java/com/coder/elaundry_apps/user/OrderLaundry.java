@@ -2,7 +2,6 @@ package com.coder.elaundry_apps.user;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-
 import com.coder.elaundry_apps.R;
 import com.coder.elaundry_apps.api.APIService;
 import com.coder.elaundry_apps.api.Constants;
@@ -20,7 +18,6 @@ import com.coder.elaundry_apps.model.APIError;
 import com.coder.elaundry_apps.model.OrderModel;
 import com.coder.elaundry_apps.utils.ErrorUtils;
 import com.coder.elaundry_apps.utils.HelperUtils;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -54,13 +51,7 @@ public class OrderLaundry extends AppCompatActivity {
             idLaundry = extra.getString("idLaundry","");
         }
         if(idLaundry != null){
-            mJemput.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    setData(idLaundry);
-                    HelperUtils.pesan(getApplicationContext(),"Sukses");
-                }
-            });
+            mJemput.setOnClickListener(v -> setData(idLaundry));
         }
     }
 
@@ -79,6 +70,8 @@ public class OrderLaundry extends AppCompatActivity {
                 public void onResponse(Call<OrderModel> call, Response<OrderModel> response) {
                     hideDialog();
                     if(response.isSuccessful()) {
+                        Intent intent = new Intent(OrderLaundry.this, DashboardUser.class);
+                        startActivity(intent);
                         HelperUtils.pesan(getApplicationContext(),"Anda berhasil memesan layanan jemput, silahkan ditunggu!");
                     } else {
                         APIError error = ErrorUtils.parseError(response);

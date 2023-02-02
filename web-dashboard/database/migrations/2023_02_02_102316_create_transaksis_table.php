@@ -13,19 +13,22 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('stores', function (Blueprint $table) {
+        Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')
                 ->constrained('users')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->string('nama_laundry');
-            $table->string('phone');
-            $table->string('alamat');
-            $table->string('longitude');
-            $table->string('latitude');
-            $table->integer('harga_kiloan');
-            $table->tinyInteger('status')->default(1);
+            $table->foreignId('store_id')
+                ->constrained('stores')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->integer('satuan');
+            $table->integer('total');
+            $table->string('phone')->nullable();
+            $table->string('longitude')->nullable();
+            $table->string('latitude')->nullable();
+            $table->tinyInteger('status')->default(0);//0 = pending , 1=dijemput , 2= diproses , 3=diantar, 4= selesai
             $table->timestamps();
         });
     }
@@ -37,6 +40,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('stores');
+        Schema::dropIfExists('transaksis');
     }
 };

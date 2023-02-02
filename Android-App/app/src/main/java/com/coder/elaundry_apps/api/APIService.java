@@ -21,17 +21,18 @@ import retrofit2.http.POST;
 
 public interface APIService {
 
+    String urlAPI = Constants.urlAPI;
 
-    @GET("api/v1/list_laundry")
+    @GET(urlAPI+"list_laundry")
     Call<GetLaundry> getLaundry();
 
     @FormUrlEncoded
-    @POST("api/v1/auth")
+    @POST(urlAPI+"auth")
     Call<LoginModel> loginUser(@Field("email") String email,
                                @Field("password") String password);
 
     @FormUrlEncoded
-    @POST("api/v1/order")
+    @POST(urlAPI+"order")
     Call<OrderModel> jemput(@Field("store_id") int idLaundry,
                             @Field("user_id") String idUser,
                             @Field("satuan") int satuan,
