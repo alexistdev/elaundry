@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.coder.elaundry_apps.BuildConfig;
 import com.coder.elaundry_apps.model.LoginModel;
+import com.coder.elaundry_apps.model.OrderModel;
 import com.coder.elaundry_apps.response.GetLaundry;
 
 import java.util.concurrent.TimeUnit;
@@ -28,17 +29,25 @@ public interface APIService {
     @POST("api/v1/auth")
     Call<LoginModel> loginUser(@Field("email") String email,
                                @Field("password") String password);
-    class Factory{
-        public static APIService create(Context mContext){
+
+    @FormUrlEncoded
+    @POST("api/v1/order")
+    Call<OrderModel> jemput(@Field("store_id") int idLaundry,
+                            @Field("user_id") String idUser,
+                            @Field("satuan") int satuan,
+                            @Field("phone") String phone);
+
+    class Factory {
+        public static APIService create(Context mContext) {
             OkHttpClient.Builder builder = new OkHttpClient.Builder();
             builder.readTimeout(20, TimeUnit.SECONDS);
             builder.connectTimeout(20, TimeUnit.SECONDS);
             builder.writeTimeout(20, TimeUnit.SECONDS);
             builder.addInterceptor(new NetworkConnectionInterceptor(mContext));
             HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-            if(BuildConfig.DEBUG){
+            if (BuildConfig.DEBUG) {
                 logging.setLevel(HttpLoggingInterceptor.Level.BODY);
-            }else {
+            } else {
                 logging.setLevel(HttpLoggingInterceptor.Level.NONE);
             }
 

@@ -10,7 +10,7 @@ class Store extends Model
     use HasFactory;
 
     protected $fillable = [
-      'user_id' ,'nama_laundry','phone','alamat','longitude','latitude','status'
+      'user_id' ,'nama_laundry','phone','alamat','longitude','latitude','status','harga_kiloan'
     ];
 
     public function user()
@@ -18,10 +18,5 @@ class Store extends Model
         return $this->belongsTo(User::class);
     }
 
-//    public function scopeActive()
-//    {
-//        return $this->$query = function($query){
-//            $query->where('status',1);
-//        };
-//    }
+
 }

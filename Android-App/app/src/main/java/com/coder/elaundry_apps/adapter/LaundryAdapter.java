@@ -1,5 +1,6 @@
 package com.coder.elaundry_apps.adapter;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.coder.elaundry_apps.R;
 import com.coder.elaundry_apps.model.LaundryModel;
+import com.coder.elaundry_apps.user.DetailLaundry;
 
 import java.util.List;
 
@@ -41,8 +43,21 @@ public class LaundryAdapter extends RecyclerView.Adapter<LaundryAdapter.MyLaundr
 
     @Override
     public void onBindViewHolder (@NonNull MyLaundryHolder holder,final int position){
-        holder.mNamaLaundry.setText(mLaundryList.get(position).getNamaLaundry());
-        holder.mAlamat.setText(mLaundryList.get(position).getAlamat());
+        String namaLaundry = mLaundryList.get(position).getNamaLaundry();
+        String idLaundry = mLaundryList.get(position).getIdLaundry();
+        String alamatLaundry = mLaundryList.get(position).getAlamat();
+        holder.mNamaLaundry.setText(namaLaundry);
+        holder.mAlamat.setText(alamatLaundry);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mIntent = new Intent(v.getContext(), DetailLaundry.class);
+                mIntent.putExtra("namaLaundry", namaLaundry);
+                mIntent.putExtra("idLaundry", idLaundry);
+                mIntent.putExtra("alamatLaundry", alamatLaundry);
+                v.getContext().startActivity(mIntent);
+            }
+        });
     }
 
     @Override

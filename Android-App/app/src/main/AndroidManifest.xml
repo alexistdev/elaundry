@@ -19,6 +19,22 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".user.OrderLaundry"
+            android:parentActivityName=".user.DetailLaundry"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".user.DetailLaundry"
+            android:exported="false"
+            android:parentActivityName=".user.DashboardUser">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".store.DashboardStore"
             android:exported="false">
             <meta-data
