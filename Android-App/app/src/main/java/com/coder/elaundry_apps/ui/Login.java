@@ -71,7 +71,7 @@ public class Login extends AppCompatActivity {
                         if(response.body() != null){
                             SessionUtils.login(getApplicationContext(),response.body().getIdUser(),response.body().getRole());
                             if(response.body().getRole().equals("3")){
-                                redirecTo(DashboardUser.class);
+                                redirecTo(DashboardStore.class);
                             }else{
                                 redirecTo(DashboardStore.class);
                             }

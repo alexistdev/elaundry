@@ -29,3 +29,4 @@ Route::post('/v1/recovery_password', [Auth::class, 'password_recovery'])->name('
  */
 Route::get('/v1/list_laundry', [UserLaundry::class, 'list_laundry'])->name('api.laundry.list');
 Route::post('/v1/order', [UserLaundry::class, 'order'])->name('api.laundry.order');
+Route::get('/v1/history', [UserLaundry::class, 'history'])->name('api.laundry.history');

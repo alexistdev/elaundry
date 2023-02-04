@@ -1,66 +1,107 @@
 package com.coder.elaundry_apps.fragmentUser;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.coder.elaundry_apps.R;
+import com.coder.elaundry_apps.adapter.HistoryAdapter;
+import com.coder.elaundry_apps.adapter.LaundryAdapter;
+import com.coder.elaundry_apps.api.APIService;
+import com.coder.elaundry_apps.api.Constants;
+import com.coder.elaundry_apps.api.NoConnectivityException;
+import com.coder.elaundry_apps.model.APIError;
+import com.coder.elaundry_apps.model.HistoryModel;
+import com.coder.elaundry_apps.response.GetHistory;
+import com.coder.elaundry_apps.utils.ErrorUtils;
+import com.coder.elaundry_apps.utils.HelperUtils;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link LaundryUser#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+
 public class LaundryUser extends Fragment {
+    private RecyclerView gridHistory;
+    private HistoryAdapter historyAdapter;
+    private List<HistoryModel> daftarHistory;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public LaundryUser() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment LaundryUser.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static LaundryUser newInstance(String param1, String param2) {
-        LaundryUser fragment = new LaundryUser();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    public LaundryUser() {}
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_laundry_user, container, false);
+        View mview = inflater.inflate(R.layout.fragment_laundry_user, container, false);
+        dataInit(mview);
+        setupRecyclerView();
+        SharedPreferences sharedPreferences = requireContext().getSharedPreferences(
+                Constants.KEY_USER, Context.MODE_PRIVATE);
+        String idUser = sharedPreferences.getString("idUser", "");
+        setData(getContext(),idUser);
+        return mview;
+    }
+
+    private void dataInit(View mview) {
+        gridHistory = mview.findViewById(R.id.rcHistory);
+    }
+
+    private void setupRecyclerView() {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        historyAdapter = new HistoryAdapter(new ArrayList<>());
+        gridHistory.setLayoutManager(linearLayoutManager);
+        gridHistory.setAdapter(historyAdapter);
+    }
+
+
+
+    public void setData(Context mContext,String idUser) {
+        try{
+            Call<GetHistory> call= APIService.Factory.create(mContext).getHistory(idUser);
+            call.enqueue(new Callback<GetHistory>() {
+                @Override
+                public void onResponse(Call<GetHistory> call, Response<GetHistory> response) {
+
+                    if (response.isSuccessful()) {
+                        if (response.body() != null) {
+                            daftarHistory =response.body().getDaftarHistory();
+                            historyAdapter.replaceData(daftarHistory);
+                        }
+                    } else {
+                        APIError error = ErrorUtils.parseError(response);
+                        if (error != null) {
+                            HelperUtils.pesan(mContext, error.message());
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<GetHistory> call, Throwable t) {
+
+                    if (t instanceof NoConnectivityException) {
+                        HelperUtils.pesan(mContext, t.getMessage());
+                    }
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+            HelperUtils.pesan(getContext(), e.getMessage());
+        }
     }
 }

@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('longitude');
             $table->string('latitude');
             $table->integer('harga_kiloan');
+            $table->integer('hari')->default(1);
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });

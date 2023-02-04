@@ -42,7 +42,7 @@ public class NetworkConnectionInterceptor implements Interceptor {
                 }
             }
         }
-        Log.i("update_statut", "Network is available : FALSE ");
+        Log.i("update_status", "Network is available : FALSE ");
         return false;
     }
 }

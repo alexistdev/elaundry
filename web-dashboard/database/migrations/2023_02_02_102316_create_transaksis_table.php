@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('longitude')->nullable();
             $table->string('latitude')->nullable();
+            $table->date('tgl_selesai')->nullable();
             $table->tinyInteger('status')->default(0);//0 = pending , 1=dijemput , 2= diproses , 3=diantar, 4= selesai
             $table->timestamps();
         });

@@ -8,5 +8,5 @@
         android:icon="@drawable/ic_baseline_local_laundry_service_24"/>
     <item android:title="@string/menuUser3"
         android:id="@+id/inbox_menu"
-        android:icon="@drawable/ic_baseline_message_24"/>
+        android:icon="@drawable/ic_baseline_manage_accounts_24"/>
 </menu>

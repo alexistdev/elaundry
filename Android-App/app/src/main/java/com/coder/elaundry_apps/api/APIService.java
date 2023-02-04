@@ -5,6 +5,7 @@ import android.content.Context;
 import com.coder.elaundry_apps.BuildConfig;
 import com.coder.elaundry_apps.model.LoginModel;
 import com.coder.elaundry_apps.model.OrderModel;
+import com.coder.elaundry_apps.response.GetHistory;
 import com.coder.elaundry_apps.response.GetLaundry;
 
 import java.util.concurrent.TimeUnit;
@@ -18,6 +19,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface APIService {
 
@@ -25,6 +27,9 @@ public interface APIService {
 
     @GET(urlAPI+"list_laundry")
     Call<GetLaundry> getLaundry();
+
+    @GET(urlAPI+"history")
+    Call<GetHistory> getHistory(@Query("user_id") String userId);
 
     @FormUrlEncoded
     @POST(urlAPI+"auth")

@@ -6,4 +6,35 @@
     android:layout_height="match_parent"
     tools:context=".store.DashboardStore">
 
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="0dp"
+        android:background="@color/white"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <FrameLayout
+            android:id="@+id/fl_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomMenu"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/bg_front"
+            app:itemIconTint="@drawable/color_selector"
+            app:itemTextColor="@color/white"
+            app:labelVisibilityMode="labeled"
+            app:menu="@menu/item_bottom_navigation_user" />
+
+
+    </RelativeLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

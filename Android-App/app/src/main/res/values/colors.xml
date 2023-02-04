@@ -10,4 +10,5 @@
     <!-- Custom -->
     <color name="bg_front">#3d5af1</color>
     <color name="hover_menu">#D1A54D</color>
+    <color name="marron">#9C4C46</color>
 </resources>
