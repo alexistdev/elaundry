@@ -21,6 +21,11 @@ class Transaksi extends Model
         return $this->belongsTo(Store::class)->select('id','nama_laundry');
     }
 
+    public function customer(){
+        return $this->belongsTo(User::class,'user_id','id')->select('id','name');
+    }
+
+
     protected function status(): Attribute
     {
         return Attribute::make(

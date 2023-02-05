@@ -29,10 +29,11 @@ class LaundryController extends Controller
 //                })
                 ->addColumn('action', function ($row) {
 //                    $url = route('', base64_encode($row->id));
-//                    $url = "";
-//                    $btn = " <a href=\"$url\" class=\"btn btn-outline-primary px-5\"> Edit</a>";
+                    $url = "";
+                    $btn = " <a href=\"$url\" class=\"btn btn-outline-primary\"> Edit</a>";
 //                    $btn = $btn . " <a href=\"#\" class=\"btn btn-danger btn-sm ml-auto open-hapus\" data-id=\"$row->id\" data-bs-toggle=\"modal\" data-bs-target=\"#hapusModal\"><i class=\"fas fa-trash\"></i> Delete</i></a>";
-                    return $btn = "";
+                    $btn = $btn . " <a href=\"$url\" class=\"btn btn-outline-danger\"> Hapus</a>";
+                    return $btn;
                 })
                 ->rawColumns(['action'])
                 ->make(true);

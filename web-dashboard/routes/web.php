@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\{DashboardController as AdmDash,
     CustomerController as AdmCust,LaundryController as AdmLaundry,
+    TransaksiController as AdmTrans,
+    SettingController as AdmSetting,
 };
 
 /*
@@ -33,6 +35,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/admin/dashboard', [AdmDash::class, 'index'])->name('adm.dashboard');
         Route::get('/admin/customer', [AdmCust::class, 'index'])->name('adm.customer');
         Route::get('/admin/laundry', [AdmLaundry::class, 'index'])->name('adm.laundry');
+        Route::get('/admin/transaksi', [AdmTrans::class, 'index'])->name('admin.transaksi');
+        Route::get('/admin/setting', [AdmSetting::class, 'index'])->name('admin.setting');
     });
 });
 

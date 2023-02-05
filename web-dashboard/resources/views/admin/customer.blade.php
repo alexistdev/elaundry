@@ -31,22 +31,33 @@
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table id="tabelCustomer" class="table table-striped table-bordered" style="width:100%">
-                            <thead class="table-light">
-                            <tr>
-                                <th class="text-center">No.</th>
-                                <th class="text-center">Name</th>
-                                <th class="text-center">Email</th>
-                                <th class="text-center">Phone</th>
-                                <th class="text-center">Status</th>
-                                <th class="text-center">Action</th>
-                            </tr>
-                            </thead><!-- end thead -->
-                            <tbody>
-                            </tbody>
-                        </table> <!-- end table -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button class="btn btn-sm btn-primary">Tambah</button>
+                        </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="table-responsive">
+                                <table id="tabelCustomer" class="table table-striped table-bordered" style="width:100%">
+                                    <thead class="table-light">
+                                    <tr>
+                                        <th class="text-center">No.</th>
+                                        <th class="text-center">Name</th>
+                                        <th class="text-center">Email</th>
+                                        <th class="text-center">Phone</th>
+                                        <th class="text-center">Status</th>
+                                        <th class="text-center">Action</th>
+                                    </tr>
+                                    </thead><!-- end thead -->
+                                    <tbody>
+                                    </tbody>
+                                </table> <!-- end table -->
+                            </div>
+                        </div>
+                    </div>
+
+
 
                 </div><!-- end card -->
             </div><!-- end card -->

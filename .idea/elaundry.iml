@@ -118,6 +118,8 @@
       <excludeFolder url="file://$MODULE_DIR$/web-dashboard/vendor/tijsverkoyen/css-to-inline-styles" />
       <excludeFolder url="file://$MODULE_DIR$/web-dashboard/vendor/dragonmantank/cron-expression" />
       <excludeFolder url="file://$MODULE_DIR$/web-dashboard/vendor/laravel/breeze" />
+      <excludeFolder url="file://$MODULE_DIR$/web-dashboard/storage/app" />
+      <excludeFolder url="file://$MODULE_DIR$/web-dashboard/storage/framework" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

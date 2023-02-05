@@ -4,7 +4,7 @@ import android.content.Context;
 import android.widget.Toast;
 
 public class HelperUtils {
-    private String message;
+
 
     public static void pesan(Context mContext, String message)
     {

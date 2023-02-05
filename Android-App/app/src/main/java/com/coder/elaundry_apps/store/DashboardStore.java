@@ -1,14 +1,12 @@
 package com.coder.elaundry_apps.store;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import android.os.Bundle;
-
 import com.coder.elaundry_apps.R;
 import com.coder.elaundry_apps.fragmentUser.HomeUser;
-import com.coder.elaundry_apps.fragmentUser.LaundryUser;
-import com.coder.elaundry_apps.fragmentUser.MessageUser;
 import com.coder.elaundry_apps.fragmentstore.AkunStore;
 import com.coder.elaundry_apps.fragmentstore.HomeStore;
 import com.coder.elaundry_apps.fragmentstore.LaundryStore;
@@ -22,7 +20,6 @@ public class DashboardStore extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_store);
         this.dataInit();
-        loadFragment(new HomeStore());
         bottomNavigationView.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
             Fragment fragment;
