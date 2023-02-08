@@ -22,13 +22,17 @@ public class LaundryModel {
     @SerializedName("latitude")
     private final String latitude;
 
-    public LaundryModel(String idLaundry, String namaLaundry, String phone, String alamat, String longitude, String latitude) {
+    @SerializedName("harga_kiloan")
+    private final String hargaKiloan;
+
+    public LaundryModel(String idLaundry, String namaLaundry, String phone, String alamat, String longitude, String latitude, String hargaKiloan) {
         this.idLaundry = idLaundry;
         this.namaLaundry = namaLaundry;
         this.phone = phone;
         this.alamat = alamat;
         this.longitude = longitude;
         this.latitude = latitude;
+        this.hargaKiloan = hargaKiloan;
     }
 
     public String getIdLaundry() {
@@ -54,4 +58,9 @@ public class LaundryModel {
     public String getLatitude() {
         return latitude;
     }
+
+    public String getHargaKiloan() {
+        return hargaKiloan;
+    }
 }
+

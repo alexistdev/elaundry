@@ -43,6 +43,9 @@
     <string name="user3">Search</string>
     <string name="user4">Laundry</string>
 
+    <!-- Detail Laundry -->
+    <string name="detail1">Rp. %1$s /kg</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

@@ -9,7 +9,7 @@ import androidx.appcompat.widget.Toolbar;
 import com.coder.elaundry_apps.R;
 
 public class DetailLaundry extends AppCompatActivity {
-    private TextView mNamaLaundry,mAlamatLaundry;
+    private TextView mNamaLaundry,mAlamatLaundry,mHarga;
     private Button mCuci;
 
     @Override
@@ -30,9 +30,11 @@ public class DetailLaundry extends AppCompatActivity {
             String namaLaundry = extra.getString("namaLaundry","");
             String alamatLaundry = extra.getString("alamatLaundry","");
             String idLaundry = extra.getString("idLaundry","");
+            String hargaLaundry = extra.getString("hargaLaundry","");
+            String Rupiah = getString(R.string.detail1, hargaLaundry);
             mNamaLaundry.setText(namaLaundry);
             mAlamatLaundry.setText(alamatLaundry);
-
+            mHarga.setText(Rupiah);
             mCuci.setOnClickListener(v -> {
                 Intent intent = new Intent(DetailLaundry.this, OrderLaundry.class);
                 intent.putExtra("idLaundry", idLaundry);
@@ -47,6 +49,7 @@ public class DetailLaundry extends AppCompatActivity {
     private void dataInit() {
         mNamaLaundry = findViewById(R.id.text_nama_laundry);
         mAlamatLaundry = findViewById(R.id.txt_alamat);
+        mHarga = findViewById(R.id.txt_harga);
         mCuci = findViewById(R.id.btn_cuci);
     }
 }

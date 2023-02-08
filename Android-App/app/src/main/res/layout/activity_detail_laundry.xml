@@ -4,7 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".user.DetailLaundry">
+    tools:context=".user.DetailLaundry"
+    tools:layout_editor_absoluteX="-72dp"
+    tools:layout_editor_absoluteY="-448dp">
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/tbtoolbar"
         android:layout_width="match_parent"
@@ -54,7 +57,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/txt_harga"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="28dp"
@@ -62,7 +65,7 @@
                 android:text="Rp. 6000,- / kg"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.886"
+                app:layout_constraintHorizontal_bias="0.869"
                 app:layout_constraintStart_toEndOf="@+id/text_nama_laundry"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -74,10 +77,10 @@
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:layout_marginStart="20sp"
-        android:textSize="18sp"
+        android:layout_marginTop="20dp"
         android:text="Detail:"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.099"
         app:layout_constraintStart_toStartOf="parent"
@@ -87,8 +90,8 @@
         android:id="@+id/txt_alamat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
         android:layout_marginStart="20sp"
+        android:layout_marginTop="5dp"
         android:text="Alamat"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.099"

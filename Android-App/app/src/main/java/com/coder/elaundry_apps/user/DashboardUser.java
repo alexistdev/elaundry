@@ -29,11 +29,12 @@ public class DashboardUser extends AppCompatActivity {
             } else {
                 fragment = new HomeUser();
             }
-
             return loadFragment(fragment);
         });
 
     }
+
+
 
     private void dataInit()
     {

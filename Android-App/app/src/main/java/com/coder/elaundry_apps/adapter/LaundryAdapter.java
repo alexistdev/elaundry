@@ -1,5 +1,6 @@
 package com.coder.elaundry_apps.adapter;
 
+import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,16 +17,18 @@ import com.coder.elaundry_apps.user.DetailLaundry;
 import java.util.List;
 
 public class LaundryAdapter extends RecyclerView.Adapter<LaundryAdapter.MyLaundryHolder>{
-    List<LaundryModel> mLaundryList;
+    private List<LaundryModel> mLaundryList;
+    private final Context context;
 
-    public LaundryAdapter(List<LaundryModel> mLaundryList) {
+    public LaundryAdapter(List<LaundryModel> mLaundryList, Context context) {
         this.mLaundryList = mLaundryList;
+        this.context = context;
     }
 
     @NonNull
     @Override
     public MyLaundryHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View mView = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_list_laundry, parent, false);
+        View mView = LayoutInflater.from(context).inflate(R.layout.single_list_laundry, parent, false);
         LaundryAdapter.MyLaundryHolder holder;
         holder = new MyLaundryHolder(mView);
         return holder;
@@ -42,21 +45,24 @@ public class LaundryAdapter extends RecyclerView.Adapter<LaundryAdapter.MyLaundr
     }
 
     @Override
-    public void onBindViewHolder (@NonNull MyLaundryHolder holder,final int position){
-        String namaLaundry = mLaundryList.get(position).getNamaLaundry();
-        String idLaundry = mLaundryList.get(position).getIdLaundry();
-        String alamatLaundry = mLaundryList.get(position).getAlamat();
-        holder.mNamaLaundry.setText(namaLaundry);
-        holder.mAlamat.setText(alamatLaundry);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent mIntent = new Intent(v.getContext(), DetailLaundry.class);
-                mIntent.putExtra("namaLaundry", namaLaundry);
-                mIntent.putExtra("idLaundry", idLaundry);
-                mIntent.putExtra("alamatLaundry", alamatLaundry);
-                v.getContext().startActivity(mIntent);
-            }
+    public void onBindViewHolder (@NonNull MyLaundryHolder holders,final int position){
+        LaundryModel model = mLaundryList.get(position);
+        String namaLaundry = model.getNamaLaundry();
+        String idLaundry = model.getIdLaundry();
+        String alamatLaundry = model.getAlamat();
+        String hargaLaundry = model.getHargaKiloan();
+
+        holders.mNamaLaundry.setText(namaLaundry);
+        holders.mNamaLaundry.setText(namaLaundry);
+        holders.mAlamat.setText(alamatLaundry);
+
+        holders.itemView.setOnClickListener(v -> {
+            Intent mIntent = new Intent(v.getContext(), DetailLaundry.class);
+            mIntent.putExtra("namaLaundry", namaLaundry);
+            mIntent.putExtra("idLaundry", idLaundry);
+            mIntent.putExtra("alamatLaundry", alamatLaundry);
+            mIntent.putExtra("hargaLaundry", hargaLaundry);
+            v.getContext().startActivity(mIntent);
         });
     }
 

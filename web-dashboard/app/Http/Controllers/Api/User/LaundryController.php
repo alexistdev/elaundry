@@ -14,7 +14,7 @@ class LaundryController extends Controller
     public function list_laundry()
     {
 
-        $data = Store::select('id', 'nama_laundry', 'phone', 'alamat', 'longitude', 'latitude')->orderBy('id', 'DESC')->where('status', 1)->get();
+        $data = Store::select('id', 'nama_laundry', 'phone', 'alamat', 'longitude', 'latitude','harga_kiloan')->orderBy('id', 'DESC')->where('status', 1)->get();
         if (!$data->isEmpty()) {
             return response()->json([
                 'status' => true,

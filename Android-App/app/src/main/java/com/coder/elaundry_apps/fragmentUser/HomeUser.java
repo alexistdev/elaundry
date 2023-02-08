@@ -6,9 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.coder.elaundry_apps.R;
@@ -17,11 +16,14 @@ import com.coder.elaundry_apps.api.APIService;
 import com.coder.elaundry_apps.api.NoConnectivityException;
 import com.coder.elaundry_apps.model.APIError;
 import com.coder.elaundry_apps.model.LaundryModel;
+import com.coder.elaundry_apps.model.LaundryViewModel;
 import com.coder.elaundry_apps.response.GetLaundry;
 import com.coder.elaundry_apps.utils.ErrorUtils;
 import com.coder.elaundry_apps.utils.HelperUtils;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -34,19 +36,18 @@ public class HomeUser extends Fragment {
     private List<LaundryModel> daftarLaundry;
     private ProgressBar progressBar;
 
-    public HomeUser() {
-        // Required empty public constructor
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        LaundryViewModel model = new ViewModelProvider(this).get(LaundryViewModel.class);
+        model.getUiState().observe(this, uiState -> {
+            setData(getContext());
+        });
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View mview = inflater.inflate(R.layout.fragment_home_user, container, false);
         dataInit(mview);
         setupRecyclerView();
@@ -61,7 +62,8 @@ public class HomeUser extends Fragment {
 
     private void setupRecyclerView() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-        laundryAdapter = new LaundryAdapter(new ArrayList<>());
+        daftarLaundry = new ArrayList<>();
+        laundryAdapter = new LaundryAdapter(daftarLaundry, getContext());
         gridLaundry.setLayoutManager(linearLayoutManager);
         gridLaundry.setAdapter(laundryAdapter);
     }
@@ -89,7 +91,7 @@ public class HomeUser extends Fragment {
                     hideDialog();
                     if (response.isSuccessful()) {
                         if (response.body() != null) {
-                            daftarLaundry =response.body().getDaftarLaundry();
+                            daftarLaundry = response.body().getDaftarLaundry();
                             laundryAdapter.replaceData(daftarLaundry);
                         }
                     } else {
@@ -115,5 +117,4 @@ public class HomeUser extends Fragment {
             HelperUtils.pesan(getContext(), e.getMessage());
         }
     }
-
 }

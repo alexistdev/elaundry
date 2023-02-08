@@ -38,14 +38,14 @@
             android:name=".ui.MapsActivityUser"
             android:exported="false"
             android:label="Map" />
-<!--        <activity-->
-<!--            android:name=".user.DetailOrderan"-->
-<!--            android:exported="false"-->
-<!--            android:parentActivityName=".user.DashboardUser">-->
-<!--            <meta-data-->
-<!--                android:name="android.app.lib_name"-->
-<!--                android:value="" />-->
-<!--        </activity>-->
+        <activity
+            android:name=".user.DetailOrderan"
+            android:exported="false"
+            android:parentActivityName=".user.DashboardUser">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".user.OrderLaundry"
             android:exported="false"
@@ -62,13 +62,13 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-<!--        <activity-->
-<!--            android:name=".store.DashboardStore"-->
-<!--            android:exported="false">-->
-<!--            <meta-data-->
-<!--                android:name="android.app.lib_name"-->
-<!--                android:value="" />-->
-<!--        </activity>-->
+        <activity
+            android:name=".store.DashboardStore"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".user.DashboardUser"
             android:exported="false">
@@ -91,14 +91,14 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity
-            android:name=".ui.Login"
-            android:exported="false"
-            android:parentActivityName=".ui.Welcome">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+<!--        <activity-->
+<!--            android:name=".ui.Login"-->
+<!--            android:exported="false"-->
+<!--            android:parentActivityName=".ui.Welcome">-->
+<!--            <meta-data-->
+<!--                android:name="android.app.lib_name"-->
+<!--                android:value="" />-->
+<!--        </activity>-->
         <activity
             android:name=".MainActivity"
             android:exported="false">
@@ -108,7 +108,7 @@
         </activity>
         <activity
 
-            android:name=".store.DashboardStore"
+            android:name=".ui.Login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
