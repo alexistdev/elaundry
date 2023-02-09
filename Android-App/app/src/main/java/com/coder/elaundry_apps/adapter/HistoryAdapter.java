@@ -47,17 +47,22 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyHistor
         String idHistory = mHistoryList.get(position).getIdHistory();
         String toko = mHistoryList.get(position).getStore().getNamaStore();
         String tanggalSelesai = mHistoryList.get(position).getTanggalSelesai();
-        String pesan = mHistoryList.get(position).getStatus();
-        holder.mIDOrder.setText("#ORDERID :"+idHistory);
+        String status = mHistoryList.get(position).getStatus();
+        String satuan = mHistoryList.get(position).getSatuan();
+        String total = mHistoryList.get(position).getTotal();
+        String invoice = holder.itemView.getContext().getString(R.string.detail13, idHistory);
+        holder.mIDOrder.setText(invoice);
         holder.mNamaToko.setText(toko);
         holder.mTanggal.setText(tanggalSelesai);
-        holder.mStatus.setText(pesan);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent mIntent = new Intent(v.getContext(), DetailOrderan.class);
-                v.getContext().startActivity(mIntent);
-            }
+        holder.mStatus.setText(status);
+        holder.itemView.setOnClickListener(v -> {
+            Intent mIntent = new Intent(v.getContext(), DetailOrderan.class);
+            mIntent.putExtra("idHistory", idHistory);
+            mIntent.putExtra("satuan", satuan);
+            mIntent.putExtra("total", total);
+            mIntent.putExtra("tanggalSelesai", tanggalSelesai);
+            mIntent.putExtra("status", status);
+            v.getContext().startActivity(mIntent);
         });
     }
 

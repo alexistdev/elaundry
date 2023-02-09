@@ -49,7 +49,7 @@ class LaundryController extends Controller
                 $cekStore = Store::find($request->store_id);
                 if($cekStore != null){
                     $cekTransaksi = Transaksi::where('user_id',$request->user_id)->where('status','<',3)->first();
-                    if($cekTransaksi == null){
+//                    if($cekTransaksi == null){
                         $hari = $cekStore->hari ?? 1;
                         $selesai = date("Y-m-d",strtotime('+'.$hari.' day'));
                         $transaksi = new Transaksi();
@@ -65,11 +65,11 @@ class LaundryController extends Controller
                             'status' => true,
                             'message' => "data berhasil disimpan!",
                         ], 200);
-                    }
-                    return response()->json([
-                        'status' => false,
-                        'message' => "Anda masih memiliki pesanan yang belum selesai!",
-                    ], 401);
+//                    }
+//                    return response()->json([
+//                        'status' => false,
+//                        'message' => "Anda masih memiliki pesanan yang belum selesai!",
+//                    ], 401);
                 }
             }
             return response()->json([

@@ -45,6 +45,20 @@
 
     <!-- Detail Laundry -->
     <string name="detail1">Rp. %1$s /kg</string>
+    <string name="detail2">Detail :</string>
+    <string name="detail3">Berat</string>
+    <string name="detail4">Rp.10.000</string>
+    <string name="detail5">28&#8211;2&#8211;2023</string>
+    <string name="detail6">1 kg</string>
+    <string name="detail7">Total</string>
+    <string name="detail8">Tanggal Selesai</string>
+    <string name="detail9">Jemput</string>
+    <string name="detail10">Status</string>
+    <string name="detail11">Pending</string>
+    <string name="detail12">CEK LOKASI</string>
+    <string name="detail13">#ORDERID : %1$s</string>
+    <string name="detail14">%1$s kg</string>
+    <string name="detail15">Rp. %1$s</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->

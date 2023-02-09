@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -35,6 +37,7 @@ public class HomeUser extends Fragment {
     private LaundryAdapter laundryAdapter;
     private List<LaundryModel> daftarLaundry;
     private ProgressBar progressBar;
+    private SearchView mSearch;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,12 +55,14 @@ public class HomeUser extends Fragment {
         dataInit(mview);
         setupRecyclerView();
         setData(getContext());
+        mSearch.setOnSearchClickListener(v -> setData(getContext()));
         return mview;
     }
 
     private void dataInit(View mview) {
         gridLaundry = mview.findViewById(R.id.rcLaundry);
         progressBar = mview.findViewById(R.id.progressBar);
+        mSearch = mview.findViewById(R.id.searchView);
     }
 
     private void setupRecyclerView() {

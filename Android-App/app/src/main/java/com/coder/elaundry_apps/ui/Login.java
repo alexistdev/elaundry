@@ -145,10 +145,4 @@ public class Login extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
     }
 
-//    private boolean cekEmail(String email) {
-//        String regex = "^(.+)@(.+)$";
-//        Pattern pattern = Pattern.compile(regex);
-//        Matcher matcher = pattern.matcher(email);
-//        return matcher.matches();
-//    }
 }

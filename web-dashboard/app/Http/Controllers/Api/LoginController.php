@@ -128,4 +128,35 @@ class LoginController extends Controller
             ], 401);
         }
     }
+
+    public function setting_akun(Request $request)
+    {
+        $rules = [
+            'user_id' => 'required|numeric',
+            'password' => 'required|max:255',
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'message' => "data tidak lengkap",
+            ], 404);
+        } else {
+            $user = User::find($request->user_id);
+            if($user !== null){
+                $user->update([
+                    'password' => Hash::make($request->password),
+                ]);
+                return response()->json([
+                    'status' => true,
+                    'message' => "data berhasil",
+                ], 200);
+            } else {
+                return response()->json([
+                    'status' => false,
+                    'message' => "kosong",
+                ], 404);
+            }
+        }
+    }
 }

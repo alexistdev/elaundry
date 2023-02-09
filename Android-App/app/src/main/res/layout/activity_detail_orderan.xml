@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:fontFamily="sans-serif-black"
-                android:text="Detail :"
+                android:text="@string/detail2"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.055"
@@ -51,20 +51,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="48dp"
-                android:text="Berat"
+                android:text="@string/detail3"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
             <TextView
-                android:id="@+id/textView10"
+                android:id="@+id/txt_berat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="212dp"
                 android:layout_marginTop="48dp"
-                android:text="1 kg"
+                android:layout_marginEnd="76dp"
+                android:text="@string/detail6"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/textView7"
                 app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
             <TextView
@@ -72,72 +70,83 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="28dp"
-                android:text="Total"
+                android:layout_marginTop="20dp"
+                android:text="@string/detail7"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
             <TextView
-                android:id="@+id/textView12"
+                android:id="@+id/txt_harga"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="212dp"
-                android:layout_marginTop="28dp"
-                android:text="Rp.10.000"
-                app:layout_constraintStart_toEndOf="@+id/textView11"
-                app:layout_constraintTop_toBottomOf="@+id/textView10" />
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="48dp"
+                android:text="@string/detail4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_berat" />
 
             <TextView
                 android:id="@+id/textView13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:layout_marginTop="28dp"
-                android:text="Tanggal Selesai"
+                android:layout_marginTop="16dp"
+                android:text="@string/detail8"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
             <TextView
-                android:id="@+id/textView14"
+                android:id="@+id/txt_tanggal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
-                android:layout_marginEnd="32dp"
-                android:text="28-2-2023"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="28dp"
+                android:text="@string/detail5"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView12" />
+                app:layout_constraintTop_toBottomOf="@+id/txt_harga" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/btn_jemput"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="28dp"
-                android:text="Jemput"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="12dp"
+                android:text="@string/detail9"
+                android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintHorizontal_bias="0.501"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_status" />
 
             <TextView
                 android:id="@+id/txtstatus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginBottom="36dp"
-                android:text="Status"
-                app:layout_constraintBottom_toTopOf="@+id/button"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/detail10"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView13"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
             <TextView
-                android:id="@+id/textView15"
+                android:id="@+id/txt_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="44dp"
-                android:text="Pending"
+                android:layout_marginEnd="52dp"
+                android:text="@string/detail11"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView14" />
+                app:layout_constraintTop_toBottomOf="@+id/txt_tanggal" />
+
+            <Button
+                android:id="@+id/btn_cek"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:text="@string/detail12"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

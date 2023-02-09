@@ -1,15 +1,20 @@
 package com.coder.elaundry_apps.user;
 
 import android.os.Bundle;
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import com.coder.elaundry_apps.R;
 import com.coder.elaundry_apps.fragmentUser.HomeUser;
 import com.coder.elaundry_apps.fragmentUser.LaundryUser;
 import com.coder.elaundry_apps.fragmentUser.MessageUser;
+import com.coder.elaundry_apps.utils.HelperUtils;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class DashboardUser extends AppCompatActivity {
+
 
     private BottomNavigationView bottomNavigationView;
 
@@ -32,6 +37,7 @@ public class DashboardUser extends AppCompatActivity {
             return loadFragment(fragment);
         });
 
+
     }
 
 
@@ -40,6 +46,7 @@ public class DashboardUser extends AppCompatActivity {
     {
         this.loadFragment(new HomeUser());
         bottomNavigationView = findViewById(R.id.bottomMenu);
+
     }
 
     private boolean loadFragment(Fragment fragment) {

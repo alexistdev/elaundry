@@ -21,6 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/v1/auth', [Auth::class, 'Auth_login'])->name('api.login');
+Route::post('/v1/auth/akun', [Auth::class, 'setting_akun'])->name('api.akun');
 Route::post('/v1/register', [Auth::class, 'register'])->name('api.register');
 Route::post('/v1/recovery_password', [Auth::class, 'password_recovery'])->name('api.recovery');
 

@@ -28,6 +28,11 @@ public interface APIService {
     @GET(urlAPI+"list_laundry")
     Call<GetLaundry> getLaundry();
 
+    @FormUrlEncoded
+    @POST(urlAPI+"auth/akun")
+    Call<LoginModel> akunSetting(@Field("user_id") String userId,
+                               @Field("password") String password);
+
     @GET(urlAPI+"history")
     Call<GetHistory> getHistory(@Query("user_id") String userId);
 
