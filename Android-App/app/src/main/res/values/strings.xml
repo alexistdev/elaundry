@@ -61,6 +61,15 @@
     <string name="detail15">Rp. %1$s</string>
 
 
+    <!-- Store -->
+
+    <!-- Dashboard -->
+    <string name="store1">Selamat Datang</string>
+    <string name="store2">Order Baru:</string>
+    <string name="store3">Order: #1</string>
+    <string name="store4">Rp.10.000</string>
+    <string name="store5">28-02-2023</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_maps_user">MapsActivityUser</string>
