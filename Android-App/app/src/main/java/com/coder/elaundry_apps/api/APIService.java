@@ -3,6 +3,7 @@ package com.coder.elaundry_apps.api;
 import android.content.Context;
 
 import com.coder.elaundry_apps.BuildConfig;
+import com.coder.elaundry_apps.model.AkunModel;
 import com.coder.elaundry_apps.model.LoginModel;
 import com.coder.elaundry_apps.model.OrderModel;
 import com.coder.elaundry_apps.response.GetHistory;
@@ -26,6 +27,9 @@ public interface APIService {
 
     String urlAPI = Constants.urlAPI;
     String urlAPI2 = Constants.urlAPI2;
+
+    @GET(urlAPI+"auth")
+    Call<AkunModel> getAkun(@Query("user_id") String userId);
 
     @GET(urlAPI+"list_laundry")
     Call<GetLaundry> getLaundry();

@@ -16,6 +16,40 @@ use Illuminate\Support\Str;
 
 class LoginController extends Controller
 {
+    public function get_akun(Request $request)
+    {
+        $rules = [
+            'user_id' => 'required|numeric',
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'message' => "data tidak lengkap",
+            ], 404);
+        } else {
+            $user=User::where('role_id','!=',"1")->find($request->user_id);
+            if($user->role_id != "2"){
+                $customer = Customer::where('user_id',$user->id)->first();
+                return response()->json([
+                    'status' => true,
+                    'message' => "berhasil",
+                    'data' => $user,
+                ], 200);
+            } else {
+                $store= Store::where('user_id',$user->id)->first();
+                return response()->json([
+                    'status' => true,
+                    'message' => "berhasil",
+                    'nama_laundry' => $store->nama_laundry,
+                    'phone' => $store->phone,
+                    'alamat' => $store->alamat,
+                    'latitude' => $store->latitude,
+                    'longitude' => $store->longitude,
+                ], 200);
+            }
+        }
+    }
     public function auth_login(Request $request)
     {
         $rules = [

@@ -21,6 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/v1/auth', [Auth::class, 'get_akun'])->name('api.getAkun');
 Route::post('/v1/auth', [Auth::class, 'Auth_login'])->name('api.login');
 Route::post('/v1/auth/akun', [Auth::class, 'setting_akun'])->name('api.akun');
 Route::post('/v1/register', [Auth::class, 'register'])->name('api.register');
