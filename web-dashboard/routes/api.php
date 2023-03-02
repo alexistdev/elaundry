@@ -37,3 +37,4 @@ Route::get('/v1/history', [UserLaundry::class, 'history'])->name('api.laundry.hi
  * Store API
  */
 Route::get('/v2/order', [StoreOrder::class, 'get_order'])->name('api.store.order');
+Route::post('/v2/order', [StoreOrder::class, 'ubah_status'])->name('api.store.status');

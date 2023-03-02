@@ -87,7 +87,7 @@ public class Login extends AppCompatActivity {
                     hideDialog();
                     if (response.isSuccessful()) {
                         if (response.body() != null) {
-                            SessionUtils.login(getApplicationContext(), response.body().getIdUser(), response.body().getRole());
+                            SessionUtils.login(getApplicationContext(), response.body().getIdUser(), response.body().getRole(),response.body().getLatitude(),response.body().getLongitude());
                             if (response.body().getRole().equals("3")) {
                                 redirecTo(DashboardUser.class);
                             } else {

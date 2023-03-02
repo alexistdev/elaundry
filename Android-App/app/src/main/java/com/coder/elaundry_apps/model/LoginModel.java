@@ -9,9 +9,17 @@ public class LoginModel {
     @SerializedName("role")
     private final String role;
 
-    public LoginModel(String idUser, String role) {
+    @SerializedName("latitude")
+    private final String latitude;
+
+    @SerializedName("longitude")
+    private final String longitude;
+
+    public LoginModel(String idUser, String role, String latitude, String longitude) {
         this.idUser = idUser;
         this.role = role;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public String getIdUser() {
@@ -20,5 +28,13 @@ public class LoginModel {
 
     public String getRole() {
         return role;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
     }
 }

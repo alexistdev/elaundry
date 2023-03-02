@@ -41,4 +41,35 @@ class OrderController extends Controller
             ], 401);
         }
     }
+
+    public function ubah_status(Request $request)
+    {
+        $rules = [
+            'transaksi_id' => 'required|numeric',
+            'status' => 'required|numeric',
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'message' => "data tidak lengkap",
+            ], 404);
+        } else {
+            $data = Transaksi::findOrFail($request->transaksi_id);
+            try{
+                Transaksi::where('id',$data->id)->update([
+                    'status' => $request->status
+                ]);
+                return response()->json([
+                    'status' => true,
+                    'message' => "berhasil",
+                ], 200);
+            } catch (\Exception $e){
+                return response()->json([
+                    'status' => false,
+                    'message' => $e->getMessage(),
+                ], 500);
+            }
+        }
+    }
 }

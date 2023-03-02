@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Customer;
+use App\Models\Store;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
@@ -34,12 +36,29 @@ class LoginController extends Controller
 
             Auth::attempt($data);
             if (Auth::check()) {
-                return response()->json([
-                    'status' => true,
-                    'message' => "Berhasil",
-                    'user_id' => Auth::user()->id,
-                    'role' => Auth::user()->role_id,
-                ], 200);
+                $role = Auth::user()->role_id;
+                if($role != "3"){
+                    $laundry = Store::where('user_id',Auth::user()->id)->first();
+                    return response()->json([
+                        'status' => true,
+                        'message' => "Berhasil",
+                        'user_id' => Auth::user()->id,
+                        'role' => Auth::user()->role_id,
+                        'latitude' => $laundry->latitude,
+                        'longitude' => $laundry->longitude,
+                    ], 200);
+                } else {
+                    $customer = Customer::where('user_id',Auth::user()->id)->first();
+                    return response()->json([
+                        'status' => true,
+                        'message' => "Berhasil",
+                        'user_id' => Auth::user()->id,
+                        'role' => Auth::user()->role_id,
+                        'latitude' => $customer->latitude,
+                        'longitude' => $customer->longitude,
+                    ], 200);
+                }
+
 
             } else {
                 return response()->json([

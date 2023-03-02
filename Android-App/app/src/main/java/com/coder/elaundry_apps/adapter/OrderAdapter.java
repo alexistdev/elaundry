@@ -52,6 +52,8 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyHolder>{
         String idOrder = mOrderList.get(position).getIdOrder();
         int satuan = mOrderList.get(position).getSatuan();
         int harga = mOrderList.get(position).getTotal();
+        String longitude = mOrderList.get(position).getLongitude();
+        String latitude = mOrderList.get(position).getLatitude();
         String tanggal = mOrderList.get(position).getCreatedAt();
         String status = mOrderList.get(position).getStatus();
         String cidOrder = holder.itemView.getContext().getString(R.string.detail13, idOrder);
@@ -63,10 +65,12 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyHolder>{
         holder.itemView.setOnClickListener(v -> {
             Intent mIntent = new Intent(v.getContext(), DetailOrderan.class);
             mIntent.putExtra("idHistory", idOrder);
-            mIntent.putExtra("satuan", satuan);
+            mIntent.putExtra("satuan", String.valueOf(satuan));
             mIntent.putExtra("total", ciTotal);
             mIntent.putExtra("tanggalSelesai", tanggal);
             mIntent.putExtra("status", status);
+            mIntent.putExtra("longitude", longitude);
+            mIntent.putExtra("latitude", latitude);
             v.getContext().startActivity(mIntent);
         });
     }

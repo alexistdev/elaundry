@@ -8,7 +8,7 @@ import com.google.gson.Gson;
 
 public class SessionUtils {
 
-    public static boolean login(Context context, String IdUser, String role){
+    public static boolean login(Context context, String IdUser, String role, String latitude, String longitude){
         SharedPreferences sharedPreferences = context.getSharedPreferences(
                 Constants.KEY_USER, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -16,6 +16,8 @@ public class SessionUtils {
         editor.putString(Constants.KEY_SESSION, userJson);
         editor.putString("idUser", IdUser);
         editor.putString("role", role);
+        editor.putString("latitude", latitude);
+        editor.putString("longitude", longitude);
         editor.apply();
         return true;
     }

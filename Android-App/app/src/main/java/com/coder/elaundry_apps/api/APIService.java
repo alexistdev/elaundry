@@ -54,6 +54,11 @@ public interface APIService {
     @GET(urlAPI2+"order")
     Call<GetOrder> getOrderStore(@Query("user_id") String userId);
 
+    @FormUrlEncoded
+    @POST(urlAPI2+"order")
+    Call<OrderModel> ubahStatus(@Field("transaksi_id") int idTrans,
+                                @Field("status") int status);
+
     class Factory {
         public static APIService create(Context mContext) {
             OkHttpClient.Builder builder = new OkHttpClient.Builder();

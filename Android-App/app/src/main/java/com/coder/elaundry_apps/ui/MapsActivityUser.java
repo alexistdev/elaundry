@@ -1,6 +1,8 @@
 package com.coder.elaundry_apps.ui;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -9,14 +11,16 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentActivity;
 
 import com.coder.elaundry_apps.R;
+import com.coder.elaundry_apps.api.Constants;
 import com.coder.elaundry_apps.databinding.ActivityMapsUserBinding;
+import com.coder.elaundry_apps.model.TitikOrder;
+import com.coder.elaundry_apps.utils.HelperUtils;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -24,11 +28,17 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MapsActivityUser extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private ActivityMapsUserBinding binding;
+    private TitikOrder titikOrder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +77,7 @@ public class MapsActivityUser extends FragmentActivity implements OnMapReadyCall
             @Nullable
             @Override
             public View getInfoWindow(@NonNull Marker marker) {
+
                 Context context = getApplicationContext(); //or getActivity(), YourActivity.this, etc.
 
                 LinearLayout info = new LinearLayout(context);
@@ -88,10 +99,44 @@ public class MapsActivityUser extends FragmentActivity implements OnMapReadyCall
                 return info;
             }
         });
+        Intent iin= getIntent();
+        Bundle extra = iin.getExtras();
+        if(extra != null) {
+            String xlatitude = extra.getString("latitude","");
+            String xlongitude = extra.getString("longitude","");
+            Double  clatitude= Double.parseDouble(xlatitude);
+            Double clongitude = Double.parseDouble(xlongitude);
+//            this.MapSetup(clatitude,clongitude,mMap);
+//            HelperUtils.pesan(getApplicationContext(),String.valueOf(clatitude));
+//            LatLng sydney = new LatLng(clatitude, clongitude);
+//            mMap.addMarker(new MarkerOptions().position(sydney).title("Laundry"));
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-6.1, 105.04102);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Laundry"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
+            LatLng customer = new LatLng(clatitude,clongitude);
+            mMap.addMarker(new MarkerOptions().position(customer).title("Penjemputan"));
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(customer));
+            SharedPreferences sharedPreferences = getApplication().getSharedPreferences(
+                    Constants.KEY_USER, Context.MODE_PRIVATE);
+            String latitude = sharedPreferences.getString("latitude", "");
+            String longitude = sharedPreferences.getString("longitude", "");
+            Double  blatitude= Double.parseDouble(latitude);
+            Double blongitude = Double.parseDouble(longitude);
+
+            LatLng laundry = new LatLng(blatitude,blongitude);
+            mMap.addMarker(new MarkerOptions().position(laundry).title("Laundry"));
+
+            PolylineOptions polylineOptions = new PolylineOptions()
+                    .add(new LatLng(clatitude, clongitude))//point A
+                    .add(new LatLng(blatitude, blongitude)); // Point B.
+
+            Polyline polyline = mMap.addPolyline(polylineOptions);
+        }
+
+    }
+
+    private void MapSetup(Double clatitude,Double clongitude,GoogleMap mMap){
+
+
+
     }
 }
