@@ -7,6 +7,7 @@ import com.coder.elaundry_apps.model.LoginModel;
 import com.coder.elaundry_apps.model.OrderModel;
 import com.coder.elaundry_apps.response.GetHistory;
 import com.coder.elaundry_apps.response.GetLaundry;
+import com.coder.elaundry_apps.response.GetOrder;
 
 import java.util.concurrent.TimeUnit;
 
@@ -24,6 +25,7 @@ import retrofit2.http.Query;
 public interface APIService {
 
     String urlAPI = Constants.urlAPI;
+    String urlAPI2 = Constants.urlAPI2;
 
     @GET(urlAPI+"list_laundry")
     Call<GetLaundry> getLaundry();
@@ -47,6 +49,10 @@ public interface APIService {
                             @Field("user_id") String idUser,
                             @Field("satuan") int satuan,
                             @Field("phone") String phone);
+
+    /** API STORE */
+    @GET(urlAPI2+"order")
+    Call<GetOrder> getOrderStore(@Query("user_id") String userId);
 
     class Factory {
         public static APIService create(Context mContext) {

@@ -7,4 +7,5 @@ public class Constants {
     public static final String KEY_USER = "ALD123123";
     public static final String KEY_SESSION = "CD12345";
     public static final String urlAPI = "api/v1/";
+    public static final String urlAPI2 = "api/v2/";
 }

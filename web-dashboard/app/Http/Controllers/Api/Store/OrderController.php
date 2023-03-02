@@ -27,7 +27,7 @@ class OrderController extends Controller
             if($cekUser!= null){
                 $store = Store::where('user_id',$cekUser->id)->first();
                 if($store != null){
-                    $transaksi = Transaksi::where('store_id',$store->id)->get();
+                    $transaksi = Transaksi::with('customer')->where('store_id',$store->id)->get();
                     return response()->json([
                         'status' => true,
                         'message' => "berhasil",

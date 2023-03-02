@@ -37,7 +37,7 @@ public class DashboardStore extends AppCompatActivity {
 
     private void dataInit()
     {
-        this.loadFragment(new HomeUser());
+        this.loadFragment(new HomeStore());
         bottomNavigationView = findViewById(R.id.bottomMenu);
     }
 

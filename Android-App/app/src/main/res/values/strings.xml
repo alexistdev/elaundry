@@ -30,7 +30,7 @@
     <!-- Menu User-->
     <string name="menuUser1">Home</string>
     <string name="menuUser2">Laundry</string>
-    <string name="menuUser3">Chat</string>
+    <string name="menuUser3">Akun</string>
 
     <!-- Single list laundry -->
     <string name="listLaundry1">Nama Laundry</string>
@@ -69,6 +69,8 @@
     <string name="store3">Order: #1</string>
     <string name="store4">Rp.10.000</string>
     <string name="store5">28-02-2023</string>
+
+    <string name="rupiah">Rp. %1$s</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
