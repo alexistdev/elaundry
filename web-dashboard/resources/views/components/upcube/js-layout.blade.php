@@ -26,4 +26,7 @@
 
     <!-- App js -->
     <script src="{{asset('template/upcube/assets/js/app.js')}}"></script>
+
+    <!-- Toast -->
+    <script src="{{asset('template/upcube/assets/libs/toastr/build/toastr.min.js')}}"></script>
 </div>

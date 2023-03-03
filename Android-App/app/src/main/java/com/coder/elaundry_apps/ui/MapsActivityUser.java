@@ -102,35 +102,51 @@ public class MapsActivityUser extends FragmentActivity implements OnMapReadyCall
         Intent iin= getIntent();
         Bundle extra = iin.getExtras();
         if(extra != null) {
+            SharedPreferences sharedPreferences = getApplication().getSharedPreferences(
+                Constants.KEY_USER, Context.MODE_PRIVATE);
+            String role = sharedPreferences.getString("role", "");
             String xlatitude = extra.getString("latitude","");
             String xlongitude = extra.getString("longitude","");
             Double  clatitude= Double.parseDouble(xlatitude);
             Double clongitude = Double.parseDouble(xlongitude);
-//            this.MapSetup(clatitude,clongitude,mMap);
-//            HelperUtils.pesan(getApplicationContext(),String.valueOf(clatitude));
-//            LatLng sydney = new LatLng(clatitude, clongitude);
-//            mMap.addMarker(new MarkerOptions().position(sydney).title("Laundry"));
+            if(role.equals("2")){
+                float zoomLevel = 18.0f;
+                LatLng sydney = new LatLng(-5.5946924, 105.5225259);
+                mMap.addMarker(new MarkerOptions().position(sydney).title("Laundry"));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney,zoomLevel));
+
+                LatLng customer = new LatLng(clatitude,clongitude);
+                mMap.addMarker(new MarkerOptions().position(customer).title("Penjemputan"));
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(customer));
+
+                String latitude = sharedPreferences.getString("latitude", "");
+                String longitude = sharedPreferences.getString("longitude", "");
+                Double  blatitude= Double.parseDouble(latitude);
+                Double blongitude = Double.parseDouble(longitude);
+
+                LatLng laundry = new LatLng(blatitude,blongitude);
+                mMap.addMarker(new MarkerOptions().position(laundry).title("Laundry"));
+
+                PolylineOptions polylineOptions = new PolylineOptions()
+                        .add(new LatLng(clatitude, clongitude))//point A
+                        .add(new LatLng(blatitude, blongitude)); // Point B.
+
+                Polyline polyline = mMap.addPolyline(polylineOptions);
+            } else {
+//
+                float zoomLevel = 18.0f;
+                LatLng sydney = new LatLng(-5.5946924, 105.5225259);
+                mMap.addMarker(new MarkerOptions().position(sydney).title("Laundry"));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney,zoomLevel));
+            }
 
 
-            LatLng customer = new LatLng(clatitude,clongitude);
-            mMap.addMarker(new MarkerOptions().position(customer).title("Penjemputan"));
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(customer));
-            SharedPreferences sharedPreferences = getApplication().getSharedPreferences(
-                    Constants.KEY_USER, Context.MODE_PRIVATE);
-            String latitude = sharedPreferences.getString("latitude", "");
-            String longitude = sharedPreferences.getString("longitude", "");
-            Double  blatitude= Double.parseDouble(latitude);
-            Double blongitude = Double.parseDouble(longitude);
 
-            LatLng laundry = new LatLng(blatitude,blongitude);
-            mMap.addMarker(new MarkerOptions().position(laundry).title("Laundry"));
-
-            PolylineOptions polylineOptions = new PolylineOptions()
-                    .add(new LatLng(clatitude, clongitude))//point A
-                    .add(new LatLng(blatitude, blongitude)); // Point B.
-
-            Polyline polyline = mMap.addPolyline(polylineOptions);
         }
+        float zoomLevel = 18.0f;
+        LatLng sydney = new LatLng(-5.5946924, 105.5225259);
+        mMap.addMarker(new MarkerOptions().position(sydney).title("Laundry"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney,zoomLevel));
 
     }
 

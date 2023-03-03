@@ -33,11 +33,6 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <button class="btn btn-sm btn-primary">Tambah</button>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
                             <div class="table-responsive">
                                 <table id="tabelCustomer" class="table table-striped table-bordered" style="width:100%">
                                     <thead class="table-light">
@@ -64,6 +59,38 @@
         </div>
         <!-- end col -->
     </div>
+
+        <!-- Start: Modal Hapus -->
+        <div id="modalHapus" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-standard-title"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal-standard-title">Hapus data</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div> <!-- // END .modal-header -->
+                    <form action="{{route('adm.customer.delete')}}" method="post">
+                        @csrf
+                        @method('delete')
+                        <div class="modal-body">
+                            <input type="hidden" id="hapusId" name="user_id">
+
+                            apakah anda ingin menghapus data ini
+
+                        </div> <!-- // END .modal-body -->
+                        <div class="modal-footer">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <button type="submit" class="btn btn-danger">Hapus</button>
+                                    <button type="button" class="btn btn-default" data-bs-dismiss="modal">Batal</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div> <!-- // END .modal-content -->
+            </div> <!-- // END .modal-dialog -->
+        </div>
+        <!-- End: Modal Hapus        -->
     <!-- end row -->
     @push('customJS')
 
@@ -77,20 +104,22 @@
                 $(document).ready(function () {
                     let base_url = '{{route('adm.customer')}}';
 
-{{--                    @if($errors->hasbag('tambah'))--}}
-{{--                    openModal($('#modalTambah'));--}}
-{{--                    @endif--}}
 
-{{--                    $('.modal').on('hidden.bs.modal', function (e) {--}}
-{{--                        e.preventDefault();--}}
-{{--                        let pesanError = $('.errorMessage');--}}
-{{--                        let errorInput = $('.errorInput');--}}
-{{--                        let errorLabel = $('.errorLabel');--}}
-{{--                        pesanError.html("");--}}
-{{--                        errorInput.removeClass('is-invalid');--}}
-{{--                        errorLabel.removeClass('text-danger');--}}
-{{--                    })--}}
-//                     $('#tabelCustomer').DataTable();
+                    $('.modal').on('hidden.bs.modal', function (e) {
+                        e.preventDefault();
+                        let pesanError = $('.errorMessage');
+                        let errorInput = $('.errorInput');
+                        let errorLabel = $('.errorLabel');
+                        pesanError.html("");
+                        errorInput.removeClass('is-invalid');
+                        errorLabel.removeClass('text-danger');
+                    })
+                    /** saat tombol hapus di klik */
+                    $(document).on("click", ".open-hapus", function (e) {
+                        e.preventDefault();
+                        let fid = $(this).data('id');
+                        $('#hapusId').val(fid);
+                    })
 
                     $('#tabelCustomer').DataTable({
                         responsive: true,

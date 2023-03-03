@@ -59,6 +59,8 @@ class LaundryController extends Controller
                         $transaksi->total = $request->satuan * $cekStore->harga_kiloan ?? 0;
                         $transaksi->phone = $request->phone;
                         $transaksi->tgl_selesai = $selesai;
+                        $transaksi->latitude = "-5.5946924";
+                        $transaksi->longitude = "105.5225259";
                         $transaksi->save();
 
                         return response()->json([

@@ -17,4 +17,13 @@
     <link href="{{asset('template/upcube/assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
     <!-- App Css-->
     <link href="{{asset('template/upcube/assets/css/app.min.css')}}" id="app-style" rel="stylesheet" type="text/css" />
+    <!-- TOAST-->
+    <link rel="stylesheet" type="text/css" href="{{asset('template/upcube/assets/libs/toastr/build/toastr.min.css')}}">
+    <style>
+        .toast-top-right {
+            top: 100px;
+            right: 12px;
+        }
+
+    </style>
 </div>

@@ -34,7 +34,10 @@ Route::middleware('auth')->group(function () {
     Route::group(['roles' => 'admin'], function () {
         Route::get('/admin/dashboard', [AdmDash::class, 'index'])->name('adm.dashboard');
         Route::get('/admin/customer', [AdmCust::class, 'index'])->name('adm.customer');
+        Route::delete('/admin/customer',  [AdmLaundry::class, 'destroy'])->name('adm.customer.delete');
         Route::get('/admin/laundry', [AdmLaundry::class, 'index'])->name('adm.laundry');
+        Route::post('/admin/laundry', [AdmLaundry::class, 'store'])->name('adm.laundry.add');
+        Route::delete('/admin/laundry', [AdmLaundry::class, 'destroy'])->name('adm.laundry.delete');
         Route::get('/admin/transaksi', [AdmTrans::class, 'index'])->name('admin.transaksi');
         Route::get('/admin/setting', [AdmSetting::class, 'index'])->name('admin.setting');
     });

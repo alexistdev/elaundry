@@ -37,11 +37,8 @@ class CustomerController extends Controller
                    return $str;
                 })
                 ->addColumn('action', function ($row) {
-//                    $url = route('', base64_encode($row->id));
                     $url = "";
-                    $btn = " <a href=\"$url\" class=\"btn btn-outline-primary\"> Edit</a>";
-                    $btn = $btn . " <a href=\"$url\" class=\"btn btn-outline-danger\"> Hapus</a>";
-//                    $btn = $btn . " <a href=\"#\" class=\"btn btn-danger btn-sm ml-auto open-hapus\" data-id=\"$row->id\" data-bs-toggle=\"modal\" data-bs-target=\"#hapusModal\"><i class=\"fas fa-trash\"></i> Delete</i></a>";
+                    $btn = " <a href=\"$url\" class=\"btn btn-outline-danger open-hapus\" data-id=\"$row->id\" data-bs-toggle=\"modal\" data-bs-target=\"#modalHapus\"> Hapus</a>";
                     return $btn;
                 })
                 ->rawColumns(['action'])

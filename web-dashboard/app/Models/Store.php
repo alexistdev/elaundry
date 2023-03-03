@@ -10,7 +10,7 @@ class Store extends Model
     use HasFactory;
 
     protected $fillable = [
-      'user_id' ,'nama_laundry','phone','alamat','longitude','latitude','status','harga_kiloan'
+      'user_id' ,'nama_laundry','phone','alamat','longitude','latitude','status','harga_kiloan','hari'
     ];
 
     public function user()
